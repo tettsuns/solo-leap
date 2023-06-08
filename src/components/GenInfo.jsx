@@ -16,16 +16,25 @@ const GenInfo = () => {
         <div className="text-gray-900 text-lg font-medium">About me</div>
         <div className="text-gray-500 text-sm mt-1">
           <p>
-            Tincidunt quam neque in cursus viverra orci, dapibus nec tristique.
-            Nullam ut sit dolor consectetur urna, dui cras nec sed. Cursus risus
-            congue arcu aenean posuere aliquam.
+            Hey there! I'm a front-end developer with a passion for creating
+            awesome user interfaces. With 9 years of experience under my belt,
+            I'm your go-to person for turning designs into visually stunning and
+            seamless websites. I geek out on HTML, CSS, and JavaScript, and I
+            love the challenge of bringing ideas to life. Whether it's building
+            responsive layouts, adding smooth animations, or optimizing
+            performance, I enjoy crafting engaging web experiences that leave
+            users smiling.
           </p>
           <p className="mt-3">
-            Et vivamus lorem pulvinar nascetur non. Pulvinar a sed platea
-            rhoncus ac mauris amet. Urna, sem pretium sit pretium urna, senectus
-            vitae. Scelerisque fermentum, cursus felis dui suspendisse velit
-            pharetra. Augue et duis cursus maecenas eget quam lectus. Accumsan
-            vitae nascetur pharetra rhoncus praesent dictum risus suspendisse.
+            I'm always keeping up with the latest front-end trends and
+            technologies because, let's face it, who doesn't love staying ahead
+            of the game? Collaboration is my jam, and I thrive in dynamic teams,
+            working closely with designers and back-end devs to create
+            pixel-perfect masterpieces. If you're looking for a front-end whiz
+            who's as passionate about clean code as they are about good vibes,
+            I'm your person. Let's team up and create some seriously awesome
+            digital experiences that make users go, "Wow!" Ready to make magic
+            happen? Let's chat!
           </p>
         </div>
       </div>
@@ -39,7 +48,7 @@ const GenInfo = () => {
         <div>
           <div className="text-gray-500 text-sm font-medium">Education</div>
           <div className="text-gray-900 text-sm font-semibold">
-            Thomas Jeff High School, Stanford University
+            University of Cebu
           </div>
         </div>
         <div>
@@ -55,13 +64,13 @@ const GenInfo = () => {
         <div>
           <div className="text-gray-500 text-sm font-medium">Languages</div>
           <div className="text-gray-900 text-sm font-semibold">
-            English, German, Italian, Spanish
+            English, Filipino, German, Italian, Spanish
           </div>
         </div>
         <div>
-          <div className="text-gray-500 text-sm font-medium">Role</div>
+          <div className="text-gray-500 text-sm font-medium">Interests</div>
           <div className="text-gray-900 text-sm font-semibold">
-            Graphic Designer
+            Coding, Music, Pets
           </div>
         </div>
         <div>

@@ -13,14 +13,14 @@ const JobListing = () => {
       <div className="justify-between sm:flex">
         <div>
           <h5 className="text-xl font-bold text-slate-900">
-            Building a beautiful product as a software developer
+            Software Engineer
           </h5>
-          <div className="flex items-center mt-1">
+          <div className="flex items-center mt-2">
             <span className="text-xs font-medium text-slate-600 rounded-full bg-gray-200 px-2 py-1 mr-2">
-              Category 1
+              Technology
             </span>
             <span className="text-xs font-medium text-slate-600 rounded-full bg-gray-200 px-2 py-1">
-              Category 2
+              Programming
             </span>
           </div>
         </div>
@@ -34,8 +34,12 @@ const JobListing = () => {
 
       <div className="mt-4 sm:pr-8">
         <p className="text-sm text-slate-500">
-          Open source Tailwind UI components and templates to bootstrap your new
-          apps, projects, or landing sites! Open source Tailwind UI.
+          We are seeking a talented Software Engineer to join our innovative
+          development team. Collaborate on the design and implementation of
+          scalable software solutions, perform code reviews, and debug complex
+          issues. Strong programming skills, knowledge of algorithms and data
+          structures, and experience with modern software development practices
+          are required.
         </p>
       </div>
 

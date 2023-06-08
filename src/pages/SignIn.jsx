@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import Logo from "../assets/logo-small.png";
+import Logo from "../assets/logo-small.svg";
 
 const SignIn = () => {
   const [loginData, setLoginData] = useState({
@@ -73,10 +73,10 @@ const SignIn = () => {
           <div className="flex-1">
             <div className="text-center">
               <div className="flex justify-center mx-auto">
-                <img className="w-auto h-24 md:h-28" src={Logo} alt="" />
+                <img className="w-auto h-14 md:h-20" src={Logo} alt="" />
               </div>
 
-              <p className="text-gray-500  text-lg dark:text-gray-300">
+              <p className="text-gray-500 mt-2 text-lg dark:text-gray-300">
                 Sign in to access your account!
               </p>
             </div>
@@ -138,9 +138,8 @@ const SignIn = () => {
                   href="/signup"
                   className="text-cyan-800 focus:outline-none focus:underline hover:underline"
                 >
-                  Sign up
+                  Sign up.
                 </a>
-                .
               </p>
             </div>
           </div>

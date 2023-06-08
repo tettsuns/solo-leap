@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Logo from "../assets/logo-full.png";
+import Logo from "../assets/logo-full.svg";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,8 +21,9 @@ const Navbar = () => {
           <div className="flex items-center justify-between">
             <a href={isLoggedIn ? "/dashboard" : "/"}>
               <img
-                className="w-auto h-6 sm:h-7"
-                src="https://merakiui.com/images/full-logo.svg"
+                className="w-auto h-11 ml-2 md:h-12 "
+                // src="https://merakiui.com/images/full-logo.svg"
+                src={Logo}
                 alt=""
               />
             </a>
