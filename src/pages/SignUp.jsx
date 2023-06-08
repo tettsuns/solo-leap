@@ -19,7 +19,7 @@ const SignUp = () => {
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value.trim(),
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -46,6 +46,7 @@ const SignUp = () => {
       .then((response) => {
         console.log(response.data);
         window.alert("You have successfully signed up!");
+        window.location.href = "./signin";
       })
       .catch((error) => {
         console.error("Error signing up: " + error);
