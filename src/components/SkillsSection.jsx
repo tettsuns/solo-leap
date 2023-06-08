@@ -22,28 +22,10 @@ const SkillsSection = () => {
             Logo Design
           </li>
           <li className="bg-cyan-100 text-cyan-800 list-item font-medium mb-2 mr-2 py-1.5 px-3 rounded-md">
-            Mobile App Design
-          </li>
-          <li className="bg-cyan-100 text-cyan-800 list-item font-medium mb-2 mr-2 py-1.5 px-3 rounded-md">
-            UI Design
-          </li>
-          <li className="bg-cyan-100 text-cyan-800 list-item font-medium mb-2 mr-2 py-1.5 px-3 rounded-md">
-            React Developer
-          </li>
-          <li className="bg-cyan-100 text-cyan-800 list-item font-medium mb-2 mr-2 py-1.5 px-3 rounded-md">
-            Wordpress
-          </li>
-          <li className="bg-cyan-100 text-cyan-800 list-item font-medium mb-2 mr-2 py-1.5 px-3 rounded-md">
-            Sketch
+            Canva
           </li>
           <li className="bg-cyan-100 text-cyan-800 list-item font-medium mb-2 mr-2 py-1.5 px-3 rounded-md">
             Figma
-          </li>
-          <li className="bg-cyan-100 text-cyan-800 list-item font-medium mb-2 mr-2 py-1.5 px-3 rounded-md">
-            Prototyping
-          </li>
-          <li className="bg-cyan-100 text-cyan-800 list-item font-medium mb-2 py-1.5 px-3 rounded-md">
-            Database
           </li>
         </ul>
       </div>
