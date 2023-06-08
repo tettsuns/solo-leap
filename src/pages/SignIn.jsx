@@ -1,6 +1,48 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
+import Logo from "../assets/logo-small.png";
 
 const SignIn = () => {
+  const [loginData, setLoginData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    setLoginData({
+      ...loginData,
+      [e.target.name]: e.target.value.trim(),
+    });
+  };
+
+  const handleLogin = (loginData) => {
+    console.log("Login data:", loginData);
+    axios
+      .post("http://localhost:5000/users/login", loginData)
+      .then((response) => {
+        console.log("Login successful:", response.data);
+        const { token, userData } = response.data;
+
+        localStorage.setItem("token", token);
+        localStorage.setItem("userData", JSON.stringify(userData));
+
+        window.alert("Login successful!");
+        window.location.href = "/dashboard";
+        setLoginData({
+          email: "",
+          password: "",
+        });
+      })
+      .catch((error) => {
+        console.error("Failed to login:", error.response.data);
+        window.alert("Failed to login. Please check your credentials.");
+        setLoginData({
+          email: "",
+          password: "",
+        });
+      });
+  };
+
   return (
     <div className="bg-white dark:bg-gray-900">
       <div className="flex justify-center min-h-screen-nav bg-slate-50">
@@ -31,14 +73,10 @@ const SignIn = () => {
           <div className="flex-1">
             <div className="text-center">
               <div className="flex justify-center mx-auto">
-                <img
-                  className="w-auto h-7 sm:h-8"
-                  src="https://merakiui.com/images/logo.svg"
-                  alt=""
-                />
+                <img className="w-auto h-24 md:h-28" src={Logo} alt="" />
               </div>
 
-              <p className="mt-3 text-gray-500  text-lg dark:text-gray-300">
+              <p className="text-gray-500  text-lg dark:text-gray-300">
                 Sign in to access your account!
               </p>
             </div>
@@ -56,6 +94,8 @@ const SignIn = () => {
                     type="email"
                     name="email"
                     id="email"
+                    value={loginData.email}
+                    onChange={handleChange}
                     placeholder="example@example.com"
                     className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                   />
@@ -75,13 +115,18 @@ const SignIn = () => {
                     type="password"
                     name="password"
                     id="password"
+                    value={loginData.password}
+                    onChange={handleChange}
                     placeholder="password"
                     className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                   />
                 </div>
 
                 <div className="mt-6">
-                  <button className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-300 transform bg-cyan-800 rounded-lg hover:bg-cyan-900 focus:outline-none focus:bg-cyan-700 focus:ring focus:ring-cyan-600 focus:ring-opacity-50">
+                  <button
+                    onClick={() => handleLogin(loginData)}
+                    className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-300 transform bg-cyan-800 rounded-lg hover:bg-cyan-900 focus:outline-none focus:bg-cyan-700 focus:ring focus:ring-cyan-600 focus:ring-opacity-50"
+                  >
                     Sign in
                   </button>
                 </div>

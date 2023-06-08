@@ -1,7 +1,14 @@
 import React, { useState } from "react";
+import Logo from "../assets/logo-full.png";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const isLoggedIn = !!localStorage.getItem("token");
+
+  const logout = () => {
+    window.localStorage.clear();
+    window.location.href = "./signin";
+  };
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -12,7 +19,7 @@ const Navbar = () => {
       <div className="container px-6 py-4 mx-auto">
         <div className="lg:flex lg:items-center lg:justify-between">
           <div className="flex items-center justify-between">
-            <a href="/">
+            <a href={isLoggedIn ? "/dashboard" : "/"}>
               <img
                 className="w-auto h-6 sm:h-7"
                 src="https://merakiui.com/images/full-logo.svg"
@@ -70,55 +77,56 @@ const Navbar = () => {
             }`}
           >
             <div className="flex flex-col -mx-6 lg:flex-row lg:items-center lg:mx-8">
-              <a
-                href="/dashboard"
-                className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
-              >
-                Home
-              </a>
-              <a
-                href="/signin"
-                className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
-              >
-                Sign In
-              </a>
-              <a
-                href="/signup"
-                className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
-              >
-                Sign Up
-              </a>
-              <a
-                href="/builder"
-                className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
-              >
-                Resume Builder
-              </a>
-              <a
-                href="/resources"
-                className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
-              >
-                Resources
-              </a>
-            </div>
+              {isLoggedIn ? (
+                <>
+                  <a
+                    href="/dashboard"
+                    className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+                  >
+                    Dashboard
+                  </a>
 
-            <div className="flex items-center mt-4 lg:mt-0">
-              <a
-                href="/profile"
-                className="flex items-center focus:outline-none"
-              >
-                <div className="w-8 h-8 overflow-hidden border-2 border-gray-400 rounded-full">
-                  <img
-                    src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80"
-                    className="object-cover w-full h-full"
-                    alt="avatar"
-                  />
-                </div>
-
-                <h3 className="mx-2 text-gray-700 dark:text-gray-200 lg:hidden">
-                  Khatab wedaa
-                </h3>
-              </a>
+                  <a
+                    href="/builder"
+                    className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+                  >
+                    Resume Builder
+                  </a>
+                  <a
+                    href="/resources"
+                    className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+                  >
+                    Resources
+                  </a>
+                  <a
+                    href="/profile"
+                    className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+                  >
+                    Profile
+                  </a>
+                  <a
+                    onClick={logout}
+                    className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer"
+                  >
+                    Logout
+                  </a>
+                </>
+              ) : (
+                <>
+                  <a
+                    href="/signin"
+                    className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+                  >
+                    Sign In
+                  </a>
+                  <a
+                    href="/signup"
+                    className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+                  >
+                    Sign Up
+                  </a>
+                </>
+              )}
             </div>
           </div>
         </div>

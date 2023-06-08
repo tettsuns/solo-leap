@@ -1,25 +1,33 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 const ProfileCard = () => {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const userData = localStorage.getItem("userData");
+    console.log("User data!: " + userData);
+    setUser(JSON.parse(userData));
+  }, []);
+
   return (
     <div className="max-w-sm mx-auto mt-4 overflow-hidden rounded-lg shadow-lg">
       <div className="h-40 bg-gradient-to-r from-cyan-300 via-blue-500 to-cyan-700">
         <div className="flex justify-center">
           <span className="mt-10 text-4xl font-bold text-white">
-            Tony Stark
+            {user.firstName + " " + user.lastName}
           </span>
         </div>
         <div className="flex justify-center">
           <img
             className="object-cover w-24 h-24 mt-4 border-4 border-cyan-800 rounded-full"
-            src="https://images.unsplash.com/photo-1636622433525-127afdf3662d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1032&q=80"
+            src="https://i.pravatar.cc/300"
             alt=""
           />
         </div>
       </div>
       <div className="px-6 py-4 bg-white">
         <div className="flex justify-center mt-10 mb-4 text-xl font-medium">
-          CEO, Stark Industries
+          Front-end Developer
         </div>
         <div className="flex w-full text-gray-600">
           <svg
@@ -42,7 +50,7 @@ const ProfileCard = () => {
               d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
             />
           </svg>
-          <span>A-123, This is my office address</span>
+          <span>{user.country}</span>
         </div>
         <div className="flex my-1 text-gray-600">
           <svg

@@ -1,8 +1,57 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
 
 const SignUp = () => {
+  const passwordConfirmRef = useRef();
+  const [formData, setFormData] = useState({
+    accType: "worker",
+    firstName: "",
+    lastName: "",
+    country: "",
+    email: "",
+    password: "",
+    workType: "Remote",
+    hoursPerWeek: "More than 30 hrs/week",
+  });
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value.trim(),
+    });
+  };
+
+  const isFormComplete = () => {
+    const formFields = Object.values(formData);
+    return formFields.every((field) => field !== "");
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (formData.password !== passwordConfirmRef.current.value) {
+      window.alert("Password and Confirm Password do not match.");
+      return;
+    } else if (!isFormComplete()) {
+      window.alert("Please fill out all fields.");
+      return;
+    }
+
+    console.log(formData);
+
+    axios
+      .post("http://localhost:5000/users/register", formData)
+      .then((response) => {
+        console.log(response.data);
+        window.alert("You have successfully signed up!");
+      })
+      .catch((error) => {
+        console.error("Error signing up: " + error);
+      });
+  };
+
   return (
     <section className="bg-white dark:bg-gray-900">
       <div className="flex justify-center min-h-screen-nav bg-slate-50">
@@ -78,13 +127,19 @@ const SignUp = () => {
               </div>
             </div>
 
-            <form className="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2">
+            <form
+              className="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2"
+              onSubmit={handleSubmit}
+            >
               <div>
                 <label className="block mb-2 text-sm text-gray-600 font-medium dark:text-gray-200">
                   First Name
                 </label>
                 <input
                   type="text"
+                  name="firstName"
+                  value={formData.firstName}
+                  onChange={handleChange}
                   placeholder="John"
                   className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                 />
@@ -96,6 +151,9 @@ const SignUp = () => {
                 </label>
                 <input
                   type="text"
+                  name="lastName"
+                  value={formData.lastName}
+                  onChange={handleChange}
                   placeholder="Snow"
                   className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                 />
@@ -107,6 +165,9 @@ const SignUp = () => {
                 </label>
                 <input
                   type="text"
+                  name="country"
+                  value={formData.country}
+                  onChange={handleChange}
                   placeholder="e.g. Philippines"
                   className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                 />
@@ -118,6 +179,9 @@ const SignUp = () => {
                 </label>
                 <input
                   type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
                   placeholder="johnsnow@example.com"
                   className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                 />
@@ -129,17 +193,20 @@ const SignUp = () => {
                 </label>
                 <input
                   type="password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
                   placeholder="Enter your password"
                   className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                 />
               </div>
-
               <div>
                 <label className="block mb-2 text-sm text-gray-600 font-medium dark:text-gray-200">
                   Confirm Password
                 </label>
                 <input
                   type="password"
+                  ref={passwordConfirmRef}
                   placeholder="Enter your password"
                   className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                 />
@@ -148,7 +215,12 @@ const SignUp = () => {
                 <label className="block mb-2 text-sm text-gray-600 font-medium dark:text-gray-200">
                   Work Type
                 </label>
-                <select className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40">
+                <select
+                  name="workType"
+                  value={formData.workType}
+                  onChange={handleChange}
+                  className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                >
                   <option value="remote">Remote</option>
                   <option value="on-site">On-Site</option>
                   <option value="any">Any</option>
@@ -159,7 +231,12 @@ const SignUp = () => {
                 <label className="block mb-2 text-sm text-gray-600 font-medium dark:text-gray-200">
                   Hours per Week
                 </label>
-                <select className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40">
+                <select
+                  name="hoursPerWeek"
+                  value={formData.hoursPerWeek}
+                  onChange={handleChange}
+                  className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                >
                   <option value="more-than-30">More than 30 hrs/week</option>
                   <option value="less-than-30">Less than 30 hrs/week</option>
                   <option value="as-needed">As needed - open to offers</option>
