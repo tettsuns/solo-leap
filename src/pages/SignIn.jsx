@@ -15,8 +15,8 @@ const SignIn = () => {
     });
   };
 
-  const handleLogin = (loginData) => {
-    console.log("Login data:", loginData);
+  const handleLogin = (loginData, e) => {
+    e.preventDefault();
     axios
       .post("http://localhost:5000/users/login", loginData)
       .then((response) => {
@@ -124,7 +124,7 @@ const SignIn = () => {
 
                 <div className="mt-6">
                   <button
-                    onClick={() => handleLogin(loginData)}
+                    onClick={(e) => handleLogin(loginData, e)}
                     className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-300 transform bg-cyan-800 rounded-lg hover:bg-cyan-900 focus:outline-none focus:bg-cyan-700 focus:ring focus:ring-cyan-600 focus:ring-opacity-50"
                   >
                     Sign in

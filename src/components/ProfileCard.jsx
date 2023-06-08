@@ -4,18 +4,20 @@ const ProfileCard = () => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const userData = localStorage.getItem("userData");
-    console.log("User data!: " + userData);
-    setUser(JSON.parse(userData));
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    setUser(userData);
   }, []);
 
+  console.log("user: ", user);
   return (
     <div className="max-w-sm mx-auto mt-4 overflow-hidden rounded-lg shadow-lg">
       <div className="h-40 bg-gradient-to-r from-cyan-300 via-blue-500 to-cyan-700">
         <div className="flex justify-center">
-          <span className="mt-10 text-4xl font-bold text-white">
-            {user.firstName + " " + user.lastName}
-          </span>
+          {user && (
+            <span className="mt-10 text-4xl font-bold text-white">
+              {user.firstName + " " + user.lastName}
+            </span>
+          )}
         </div>
         <div className="flex justify-center">
           <img
@@ -50,7 +52,7 @@ const ProfileCard = () => {
               d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
             />
           </svg>
-          <span>{user.country}</span>
+          {user && <span>{user.country}</span>}
         </div>
         <div className="flex my-1 text-gray-600">
           <svg
@@ -62,7 +64,7 @@ const ProfileCard = () => {
             <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
             <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
           </svg>
-          <span>97 Applications</span>
+          <span>23 Applications</span>
         </div>
       </div>
     </div>

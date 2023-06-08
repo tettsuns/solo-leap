@@ -58,8 +58,8 @@ const JobListing = () => {
       </dl>
 
       <div className="mt-6">
-        <button className="px-6 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-cyan-800 rounded-lg hover:bg-cyan-700 focus:outline-none focus:ring focus:ring-cyan-600 focus:ring-opacity-50">
-          Apply
+        <button className="px-6 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-cyan-800 rounded-lg hover:bg-cyan-900 focus:outline-none focus:ring focus:ring-cyan-600 focus:ring-opacity-50">
+          Apply Now
         </button>
       </div>
     </a>

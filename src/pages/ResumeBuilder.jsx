@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowLeft,
@@ -21,6 +21,13 @@ const ResumeBuilder = () => {
     other: "",
   });
 
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    setUser(userData);
+  }, []);
+
   const handleInputChange = (event) => {
     setFormData({
       ...formData,
@@ -35,6 +42,11 @@ const ResumeBuilder = () => {
       .split(" ")
       .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
       .join(" ");
+  };
+
+  const isFormComplete = () => {
+    const formFields = Object.values(formData);
+    return formFields.every((field) => field !== "");
   };
 
   return (
@@ -181,7 +193,7 @@ const ResumeBuilder = () => {
                   </label>
                   <textarea
                     id="other"
-                    placeholder="Anything else you want to add? e.g. Certifications, Volunteer Experience, etc."
+                    placeholder="Anything else you want to add? e.g. Certifications, Volunteer Experience, etc. Enter N/A if none."
                     name="other"
                     rows="4"
                     className="w-full mt-2 rounded-lg resize-none px-4 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-cyan-700 focus:border-cyan-700 focus:z-10 sm:text-sm"
@@ -205,7 +217,11 @@ const ResumeBuilder = () => {
                 <button
                   type="button"
                   className="w-1/3 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-cyan-800 hover:bg-cyan-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-700"
-                  onClick={() => setStep(3)}
+                  onClick={() =>
+                    !isFormComplete()
+                      ? window.alert("Please fill out all the fields!")
+                      : setStep(3)
+                  }
                 >
                   Next
                   <FontAwesomeIcon
@@ -232,6 +248,16 @@ const ResumeBuilder = () => {
           <div className="container mx-auto flex flex-col w-full md:flex-row justify-center items-center lg:gap-20">
             <div className="w-1/3">
               <div className="text-gray-500 text-sm">
+                <div className="mt-4">
+                  <span className="inline-block py-1 px-3 rounded-full bg-gradient-to-r from-cyan-400 via-blue-500 to-cyan-700 text-white font-semibold shadow-md">
+                    Name
+                  </span>
+                </div>
+                {user && (
+                  <div className="text-gray-900 font-medium ml-2 my-2">
+                    {user.firstName + " " + user.lastName}
+                  </div>
+                )}
                 {Object.entries(formData).map(([key, value]) => (
                   <React.Fragment key={key}>
                     <div className="mt-4">

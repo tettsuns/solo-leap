@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ProfileSection from "../components/ProfileSection";
 import GenInfo from "../components/GenInfo";
 import SkillsSection from "../components/SkillsSection";

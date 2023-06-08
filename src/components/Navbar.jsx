@@ -77,7 +77,7 @@ const Navbar = () => {
             }`}
           >
             <div className="flex flex-col -mx-6 lg:flex-row lg:items-center lg:mx-8">
-              {isLoggedIn ? (
+              {isLoggedIn && (
                 <>
                   <a
                     href="/dashboard"
@@ -111,7 +111,8 @@ const Navbar = () => {
                     Logout
                   </a>
                 </>
-              ) : (
+              )}
+              {!isLoggedIn && (
                 <>
                   <a
                     href="/signin"

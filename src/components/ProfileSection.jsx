@@ -7,7 +7,6 @@ const ProfileSection = () => {
 
   useEffect(() => {
     const userData = JSON.parse(localStorage.getItem("userData"));
-    console.log("User data: " + userData);
     setUser(userData);
   }, []);
 
@@ -24,9 +23,11 @@ const ProfileSection = () => {
         />
       </div>
       <div>
-        <h2 className="text-xl font-bold">
-          {user.firstName + " " + user.lastName}
-        </h2>
+        {user && (
+          <h2 className="text-xl font-bold">
+            {user.firstName + " " + user.lastName}
+          </h2>
+        )}
         <ul className="mt-2">
           <li className="items-center text-gray-500 flex text-sm">
             <svg
@@ -44,21 +45,24 @@ const ProfileSection = () => {
             </svg>
             Front-end Developer
           </li>
-          <li className="items-center text-gray-500 flex text-sm mt-1">
-            <svg
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-              className="text-gray-900 h-4 mr-2 align-middle w-4 overflow-hidden"
-            >
-              <path
-                fillRule="evenodd"
-                d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
-                clipRule="evenodd"
-              ></path>
-            </svg>
-            {user.country}
-          </li>
+          {user && (
+            <li className="items-center text-gray-500 flex text-sm mt-1">
+              <svg
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+                className="text-gray-900 h-4 mr-2 align-middle w-4 overflow-hidden"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                  clipRule="evenodd"
+                ></path>
+              </svg>
+
+              {user.country}
+            </li>
+          )}
         </ul>
       </div>
 
@@ -66,17 +70,23 @@ const ProfileSection = () => {
         <div className="flex-grow">
           <div className="text-gray-500 text-sm">
             <div className="mt-4">Email address</div>
-            <a className="text-gray-900 cursor-pointer font-medium">
-              {user.email}
-            </a>
+            {user && (
+              <a className="text-gray-900 cursor-pointer font-medium">
+                {user.email}
+              </a>
+            )}
             <div className="mt-4">Work Type Preference</div>
-            <div className="text-gray-900 font-medium mb-2">
-              {user.workType}
-            </div>
+            {user && (
+              <div className="text-gray-900 font-medium mb-2">
+                {user.workType}
+              </div>
+            )}
             <div className="mt-4">Work Hours Availability</div>
-            <div className="text-gray-900 font-medium mb-2">
-              {user.hoursPerWeek}
-            </div>
+            {user && (
+              <div className="text-gray-900 font-medium mb-2">
+                {user.hoursPerWeek}
+              </div>
+            )}
           </div>
         </div>
       </div>

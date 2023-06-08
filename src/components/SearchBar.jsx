@@ -22,7 +22,7 @@ const SearchBar = () => {
         <input
           type="button"
           value="Search"
-          className="bg-cyan-800 p-2 rounded-tr-lg rounded-br-lg text-white font-semibold hover:bg-cyan-700 transition-colors cursor-pointer"
+          className="bg-cyan-800 p-2 rounded-tr-lg rounded-br-lg text-white font-semibold hover:bg-cyan-900 transition-colors cursor-pointer"
         />
       </div>
     </div>
